@@ -10,7 +10,7 @@ package edu.eci.arsw.model;
  * @author 2095499
  */
 public class ClientMessage {
-    private String message;
+    private String message="";
     private String user;
 
     public String getUser() {

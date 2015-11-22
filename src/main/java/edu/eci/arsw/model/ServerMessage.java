@@ -11,8 +11,18 @@ package edu.eci.arsw.model;
  */
 public class ServerMessage {
     private String content;
-    public ServerMessage(String content) {
+    private String sendTo;
+
+    public String getSendTo() {
+        return sendTo;
+    }
+
+    public void setSendTo(String sendTo) {
+        this.sendTo = sendTo;
+    }
+    public ServerMessage(String content,String senTo) {
     this.content = content;
+    this.sendTo=senTo;
     }
     public String getContent() {
     return content;

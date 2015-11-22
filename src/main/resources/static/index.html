@@ -8,9 +8,22 @@ and open the template in the editor.
 <html>
     <head>
         <title>Documento compartido</title>
+        
         <script src="sockjs-0.3.4.js"></script>
         <script src="stomp.js"></script>
         <script src="stomp-ws.js"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [["$","$"],["\\(","\\)"]]
+            }
+          });
+        </script>
+        <script type="text/javascript"
+          src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+        </script>
+        <script src="math.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.css">
         <!--<link rel="stylesheet" type="text/css" href="style.css">-->
     </head>
     <body>
@@ -20,7 +33,8 @@ and open the template in the editor.
         <div>
             Usuario:<input type="text" id="user" /><br>
             <button id="connect">Connect</button>
-            <button id="disconnect" disabled="disabled">Disconnect</button>
+            <button id="disconnect" disabled="disabled">Disconnect</button><br>
+            
             <img  id="imagenPrincipal" src="images/principal.png" >
         </div>
         <div id="conversationDiv">
@@ -31,13 +45,16 @@ and open the template in the editor.
                 </tr>
                 <tr>
                 <td>
-                     <input type="text" id="message" oninput="sendMessage()"  />
+                    <textarea type="text" id="message" oninput="sendMessage()" rows="50" cols="80"  onclick ="UpdateMath(this.value)" ></textarea>
                 </td>
                 <td>
-                      <p id="response"></p>
+                    <textarea id="response" disabled rows="50" cols="80" ></textarea>
                 </td>
                 </tr>
             </table>
+            <div id ="prueba">
+                ${}$
+            </div>    
            
             <!--<button id="send">Send</button>-->
           
