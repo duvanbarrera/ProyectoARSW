@@ -9,9 +9,11 @@ var stompClient = null;
 function setConnected(connected) {
     document.getElementById('connect').disabled = connected;
     document.getElementById('disconnect').disabled = !connected;
-     document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
+    document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
     document.getElementById('response').innerHTML = '';
-}
+    document.getElementById('imagenPrincipal').style.visibility= !connected ? 'visible' : 'hidden';
+    document.getElementById('user').disabled= connected;
+}   
 function connect() {
     var socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);

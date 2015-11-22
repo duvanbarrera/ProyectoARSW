@@ -7,24 +7,40 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hello WebSocket</title>
+        <title>Documento compartido</title>
         <script src="sockjs-0.3.4.js"></script>
         <script src="stomp.js"></script>
         <script src="stomp-ws.js"></script>
+        <!--<link rel="stylesheet" type="text/css" href="style.css">-->
     </head>
     <body>
-        <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websoc
-                Javascript and reload this page!</h2></noscript>
+       <!-- <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websoc
+                Javascript and reload this page!</h2></noscript>-->
         <div>
         <div>
+            Usuario:<input type="text" id="user" /><br>
             <button id="connect">Connect</button>
             <button id="disconnect" disabled="disabled">Disconnect</button>
+            <img  id="imagenPrincipal" src="images/principal.png" >
         </div>
-        <input type="text" id="user" />
         <div id="conversationDiv">
-            <input type="text" id="message" oninput="sendMessage()"  />
+            <table>
+                <tr>
+                <th>escrito</th>
+                <th>copiado</th>
+                </tr>
+                <tr>
+                <td>
+                     <input type="text" id="message" oninput="sendMessage()"  />
+                </td>
+                <td>
+                      <p id="response"></p>
+                </td>
+                </tr>
+            </table>
+           
             <!--<button id="send">Send</button>-->
-            <p id="response"></p>
+          
         </div>
         </div>
     </body>
