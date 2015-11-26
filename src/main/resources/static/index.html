@@ -23,6 +23,7 @@ and open the template in the editor.
           src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
         </script>
         <script src="math.js"></script>
+        <script src="utilities.js"></script>
         <link rel="stylesheet" href="css/bootstrap.css">
         <!--<link rel="stylesheet" type="text/css" href="style.css">-->
     </head>
@@ -47,7 +48,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                 <td>
-                    <textarea type="text" id="message" oninput="sendMessage();UpdateMath(this.value)" rows="50" cols="80"></textarea>
+                    <textarea type="text" id="message" oninput="sendMessage();UpdateMath(this.value)" rows="20" cols="60"></textarea>
                 </td>
                 <td>
                    <div id ="prueba">
@@ -58,7 +59,7 @@ and open the template in the editor.
             </table>
               
            
-            <!--<button id="send">Send</button>-->
+                <button onclick="downloadLatex()">Download Latex</button>
           
         </div>
         </div>
