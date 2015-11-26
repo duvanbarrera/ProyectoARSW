@@ -10,24 +10,14 @@ function setConnected(connected) {
     document.getElementById('connect').disabled = connected;
     document.getElementById('disconnect').disabled = !connected;
     document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
-<<<<<<< HEAD
-<<<<<<< HEAD
- 
-    document.getElementById('imagenPrincipal').style.visibility= !connected ? 'visible' : 'hidden';
-=======
-  //  document.getElementById('response').innerHTML = '';
-  //  document.getElementById('imagenPrincipal').style.visibility= !connected ? 'visible' : 'hidden';
->>>>>>> con usuarios sin concurrencia
-=======
-  //  document.getElementById('imagenPrincipal').style.visibility= !connected ? 'visible' : 'hidden';
->>>>>>> master
     document.getElementById('user').disabled= connected;
 }   
 function connect() {
     
     var user =document.getElementById("user").value;
     if (user!=""){
-         var socket = new SockJS('/ws');
+      
+        var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
         setConnected(true);
@@ -43,21 +33,19 @@ function connect() {
             console.log("soy yooo");
             
             var labelModify = document.getElementById('message');
-            //var response=document.getElementById('response');
+            
             console.log(JSON.parse(serverMessage.body).content+"   entro que es estyo");
             labelModify.value=(JSON.parse(serverMessage.body).content);
-            //UpdateMath(JSON.parse(serverMessage.body).content);
-            //response.value=(JSON.parse(serverMessage.body).content);
         }
        
         });
         stompClient.subscribe('/topic/users',function(users){
-          //alert(JSON.parse(users.body));  
+            console.log("numro de usuario    "+ JSON.parse(users.body).length);
           showUsersConnected(JSON.parse(users.body));
         });
         
         stompClient.send("/app/messageActual",{},JSON.stringify({ 'name': user }));
-		//alert(actual.getMessage());
+		
         stompClient.send("/app/users",{});
         });
         
@@ -68,15 +56,15 @@ function connect() {
    
 }
 function showUsersConnected(ListUsers){
-   // alert(ListUsers[0].name);
-   console.log("trejdsfksdjfksld s"+ListUsers);
+  
+   
     var usersNow= "";
-    var users= document.getElementById("users");
+    var users= document.getElementById("usersActual");
     for (i=0; i<ListUsers.length; i++){
         usersNow=usersNow+"  | "+ ListUsers[i].name;
     }
-    console.log("maricon truiple hpta     "+usersNow);
-    users.value=usersNow;
+    
+    users.innerHTML=usersNow;
 }   
     
 function disconnect() {
@@ -137,25 +125,14 @@ function sendMessage() {
     stompClient.send("/app/message", {}, JSON.stringify({ 'message': message,'userMessage':userMessageT }));
 }
 function showServerMessage(message) {
-	//alert(message);
-    //var response = document.getElementById('response');
     var labelModify = document.getElementById('message');
     devPos();
-	//UpdateMath(message);
-   // response.value=(message);
     labelModify.value=(message);
     UpdateMath(message);
-   
-    //var p = document.createElement('p');
-    //p.style.wordWrap = 'break-word';
-    //p.appendChild(document.createTextNode(message));
-    //response.appendChild(p);
+ 
 }
 
 function init() {
- //   var btnSend = document.getElementById('send');
-   // btnSend.onclick=sendMessage;
-   
     var btnConnect = document.getElementById('connect');
     btnConnect.onclick=connect;
     var btnDisconnect = document.getElementById('disconnect');
@@ -163,13 +140,3 @@ function init() {
     disconnect();
 }
 window.onload = init;
-
-
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-

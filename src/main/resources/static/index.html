@@ -30,16 +30,16 @@ and open the template in the editor.
        <!-- <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websoc
                 Javascript and reload this page!</h2></noscript>-->
         <div>
-			<img  id="imagenPrincipal" src="images/FondoSuperior.png" >
+            <img  id="imagenPrincipal" src="images/FondoSuperior.png" >
         <div>
 		
             User:<input type="text" id="user" /><br>
             <button id="connect">Connect</button>
             <button id="disconnect" disabled="disabled">Disconnect</button><br>
-            Users connected : <p id="users"></p>
+            
         </div>
         <div id="conversationDiv">
-			
+		Users connected : <p id="usersActual"></p>	
             <table>
                 <tr>
                 <th><h2>Text</h2></th>
@@ -47,7 +47,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                 <td>
-                    <textarea type="text" id="message" oninput="sendMessage();UpdateMath(this.value)" rows="50" cols="80"  ></textarea>
+                    <textarea type="text" id="message" oninput="sendMessage();UpdateMath(this.value)" rows="50" cols="80"></textarea>
                 </td>
                 <td>
                    <div id ="prueba">

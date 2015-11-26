@@ -25,21 +25,18 @@ public class MessageController {
     @MessageMapping("/message")
     @SendTo("/topic/messages")
     public ServerMessage serverMessage(ClientMessage message) throws Exception {
-        //Thread.sleep(3000); // simulated delay
+       
         this.message=message;
         
         ServerMessage temp= new ServerMessage(message.getMessage(), message.getUserMessage());
-        //System.out.println(message.getMessage() + " " + "metodo messagge controller   "+ message.getMessage());
+   
         return temp;
     }
     @MessageMapping("/messageActual")
     @SendTo("/topic/messages")
-    public ServerMessage serverMessageActual(UserMessage user) throws Exception {
-        //Thread.sleep(3000); // simulated delay
+    public ServerMessage serverMessageActual(UserMessage user) throws Exception {    
         users.add(user);
-       // System.out.println(message.getMessage()+"  "+user + " " + "metodo messagge controller emtrp   ");
        ServerMessage temp= new ServerMessage(message.getMessage(), message.getUserMessage());
-       // System.out.println(message.getMessage() + " " + "metodo messagge  agregar user controller   "+ message.getMessage());
         return temp;
     }
     
@@ -54,16 +51,16 @@ public class MessageController {
     @MessageMapping("/usersDelete")
     @SendTo("/topic/users")
     public ArrayList<UserMessage> DeleteUser(UserMessage user) throws Exception {
-        System.out.println(user.getName()+"              "+users.size());
+       
         int ind=0;
         for (int i=0;i<users.size();i++){
             if (user.getName().equals(users.get(i).getName())){
                 ind=i;
             }
         }
-        //int ind=users.indexOf(user);
+        
         users.remove(ind);
-        System.out.println("despues de borrado    "+ users.size());
+        
         return users;
     }
     

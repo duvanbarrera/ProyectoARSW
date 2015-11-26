@@ -14,6 +14,9 @@ public class UserMessage {
     public UserMessage(String name){
         this.name=name;
     }
+    public UserMessage(){
+        
+    }
     public String getName() {
         return name;
     }
