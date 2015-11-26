@@ -30,18 +30,20 @@ and open the template in the editor.
        <!-- <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websoc
                 Javascript and reload this page!</h2></noscript>-->
         <div>
+			<img  id="imagenPrincipal" src="images/FondoSuperior.png" >
         <div>
-            Usuario:<input type="text" id="user" /><br>
+		
+            User:<input type="text" id="user" /><br>
             <button id="connect">Connect</button>
             <button id="disconnect" disabled="disabled">Disconnect</button><br>
-            
-            <img  id="imagenPrincipal" src="images/principal.png" >
+            Users connected : <p id="users"></p>
         </div>
         <div id="conversationDiv">
+			
             <table>
                 <tr>
-                <th>escrito</th>
-                <th>copiado</th>
+                <th><h2>Text</h2></th>
+                <th><h2>View</h2></th>
                 </tr>
                 <tr>
                 <td>

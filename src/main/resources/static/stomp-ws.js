@@ -10,8 +10,17 @@ function setConnected(connected) {
     document.getElementById('connect').disabled = connected;
     document.getElementById('disconnect').disabled = !connected;
     document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
+<<<<<<< HEAD
+<<<<<<< HEAD
  
     document.getElementById('imagenPrincipal').style.visibility= !connected ? 'visible' : 'hidden';
+=======
+  //  document.getElementById('response').innerHTML = '';
+  //  document.getElementById('imagenPrincipal').style.visibility= !connected ? 'visible' : 'hidden';
+>>>>>>> con usuarios sin concurrencia
+=======
+  //  document.getElementById('imagenPrincipal').style.visibility= !connected ? 'visible' : 'hidden';
+>>>>>>> master
     document.getElementById('user').disabled= connected;
 }   
 function connect() {
@@ -24,9 +33,9 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/messages', function(serverMessage){
-        //alert(JSON.parse(serverMessage.body).sendTo);
-        if(JSON.parse(serverMessage.body).sendTo != user){
-             console.log(JSON.parse(serverMessage.body).sendTo+" marico");
+        console.log(JSON.parse(serverMessage.body).userMessage.name+"    esto es lo que entro");
+        if(JSON.parse(serverMessage.body).userMessage.name != user){
+             //console.log(JSON.parse(serverMessage.body).sendTo+" marico");
              
              showServerMessage(JSON.parse(serverMessage.body).content);
 
@@ -42,19 +51,38 @@ function connect() {
         }
        
         });
-        stompClient.send("/app/messageActual",{},JSON.stringify({ 'string': user }));
-		alert(actual.getMessage());
+        stompClient.subscribe('/topic/users',function(users){
+          //alert(JSON.parse(users.body));  
+          showUsersConnected(JSON.parse(users.body));
         });
+        
+        stompClient.send("/app/messageActual",{},JSON.stringify({ 'name': user }));
+		//alert(actual.getMessage());
+        stompClient.send("/app/users",{});
+        });
+        
     }else{
        
         alert("el usuario no puede ser nulo");
     }
    
 }
-    
+function showUsersConnected(ListUsers){
+   // alert(ListUsers[0].name);
+   console.log("trejdsfksdjfksld s"+ListUsers);
+    var usersNow= "";
+    var users= document.getElementById("users");
+    for (i=0; i<ListUsers.length; i++){
+        usersNow=usersNow+"  | "+ ListUsers[i].name;
+    }
+    console.log("maricon truiple hpta     "+usersNow);
+    users.value=usersNow;
+}   
     
 function disconnect() {
+    var user =document.getElementById("user").value;
     if (stompClient != null) {
+    stompClient.send("/app/usersDelete",{},JSON.stringify({'name': user }));
     stompClient.disconnect();
     }
     setConnected(false);
@@ -105,7 +133,8 @@ function setCaretPosition(elemId, caretPos) {
 function sendMessage() {
     var message = document.getElementById('message').value;
     var user = document.getElementById('user').value;
-    stompClient.send("/app/message", {}, JSON.stringify({ 'message': message,'user':user }));
+    var userMessageT={'name':user};
+    stompClient.send("/app/message", {}, JSON.stringify({ 'message': message,'userMessage':userMessageT }));
 }
 function showServerMessage(message) {
 	//alert(message);

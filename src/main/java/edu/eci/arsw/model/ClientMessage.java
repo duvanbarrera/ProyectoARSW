@@ -10,16 +10,25 @@ package edu.eci.arsw.model;
  * @author 2095499
  */
 public class ClientMessage {
-    private String message="";
-    private String user;
-
-    public String getUser() {
-        return user;
+    private String message;
+    private UserMessage userMessage;
+    public ClientMessage(String message,UserMessage userMessage){
+        this.message=message;
+        this.userMessage=userMessage;
+    }
+    public ClientMessage(){
+        
+    }
+    public UserMessage getUserMessage() {
+        return userMessage;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserMessage(UserMessage userMessage) {
+        this.userMessage = userMessage;
     }
+
+
+    
     public String getMessage() {
     return message;
     }

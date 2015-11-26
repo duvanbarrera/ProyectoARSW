@@ -63,6 +63,7 @@ dfn {
 h1 {
   margin: .67em 0;
   font-size: 2em;
+  text-align:middle;
 }
 mark {
   color: #000;
@@ -183,11 +184,13 @@ optgroup {
 table {
   border-spacing: 0;
   border-collapse: collapse;
-
+ 
 }
 td,
 th {
+
   padding: 0;
+  text-align: middle;
 }
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
@@ -2280,6 +2283,7 @@ pre code {
 }
 table {
   background-color: transparent;
+  
 }
 caption {
   padding-top: 8px;
@@ -2294,6 +2298,7 @@ th {
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
+  
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
