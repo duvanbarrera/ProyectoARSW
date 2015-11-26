@@ -45,16 +45,16 @@ and open the template in the editor.
                 </tr>
                 <tr>
                 <td>
-                    <textarea type="text" id="message" oninput="sendMessage()" rows="50" cols="80"  onclick ="UpdateMath(this.value)" ></textarea>
+                    <textarea type="text" id="message" oninput="sendMessage();UpdateMath(this.value)" rows="50" cols="80"  ></textarea>
                 </td>
                 <td>
-                    <textarea id="response" disabled rows="50" cols="80" ></textarea>
+                   <div id ="prueba">
+						${}$
+					</div>  
                 </td>
                 </tr>
             </table>
-            <div id ="prueba">
-                ${}$
-            </div>    
+              
            
             <!--<button id="send">Send</button>-->
           

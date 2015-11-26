@@ -10,7 +10,7 @@ function setConnected(connected) {
     document.getElementById('connect').disabled = connected;
     document.getElementById('disconnect').disabled = !connected;
     document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
-    document.getElementById('response').innerHTML = '';
+  //  document.getElementById('response').innerHTML = '';
     document.getElementById('imagenPrincipal').style.visibility= !connected ? 'visible' : 'hidden';
     document.getElementById('user').disabled= connected;
 }   
@@ -26,19 +26,24 @@ function connect() {
         stompClient.subscribe('/topic/messages', function(serverMessage){
         //alert(JSON.parse(serverMessage.body).sendTo);
         if(JSON.parse(serverMessage.body).sendTo != user){
+             console.log(JSON.parse(serverMessage.body).sendTo+" marico");
+             
              showServerMessage(JSON.parse(serverMessage.body).content);
 
         }else{
             console.log("soy yooo");
+            
             var labelModify = document.getElementById('message');
-            var response=document.getElementById('response');
+            //var response=document.getElementById('response');
+            console.log(JSON.parse(serverMessage.body).content+"   entro que es estyo");
             labelModify.value=(JSON.parse(serverMessage.body).content);
-            response.value=(JSON.parse(serverMessage.body).content);
+            //UpdateMath(JSON.parse(serverMessage.body).content);
+            //response.value=(JSON.parse(serverMessage.body).content);
         }
        
         });
         stompClient.send("/app/messageActual",{},JSON.stringify({ 'string': user }));
-       // alert(actual.getMessage());
+		alert(actual.getMessage());
         });
     }else{
        
@@ -103,12 +108,14 @@ function sendMessage() {
     stompClient.send("/app/message", {}, JSON.stringify({ 'message': message,'user':user }));
 }
 function showServerMessage(message) {
-    var response = document.getElementById('response');
+	//alert(message);
+    //var response = document.getElementById('response');
     var labelModify = document.getElementById('message');
     devPos();
-    response.innerHTML=(message);
+	//UpdateMath(message);
+   // response.value=(message);
     labelModify.value=(message);
-    
+    UpdateMath(message);
    
     //var p = document.createElement('p');
     //p.style.wordWrap = 'break-word';

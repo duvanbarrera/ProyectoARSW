@@ -21,7 +21,7 @@
     //
     window.UpdateMath = function (TeX) {
         
-		//console.log(TeX);
+	//console.log("entro update                   "+TeX);
       QUEUE.Push(["Text",math,"\\displaystyle{"+TeX+"}"]);
     }
 
