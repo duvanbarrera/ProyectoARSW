@@ -35,7 +35,7 @@ public class MessageController {
     @MessageMapping("/messageActual")
     @SendTo("/topic/messages")
     public ServerMessage serverMessageActual(UserMessage user) throws Exception {    
-        users.add(user);
+       users.add(user);
        ServerMessage temp= new ServerMessage(message.getMessage(), message.getUserMessage());
         return temp;
     }
