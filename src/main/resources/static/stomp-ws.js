@@ -16,31 +16,27 @@ function connect() {
     
     var user =document.getElementById("user").value;
     if (user!=""){
-      
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/messages', function(serverMessage){
-        console.log(JSON.parse(serverMessage.body).userMessage.name+"    esto es lo que entro");
         if(JSON.parse(serverMessage.body).userMessage.name != user){
-             //console.log(JSON.parse(serverMessage.body).sendTo+" marico");
-             
+            console.log(JSON.parse(serverMessage.body).content);
              showServerMessage(JSON.parse(serverMessage.body).content);
 
         }else{
-            console.log("soy yooo");
-            
+           
             var labelModify = document.getElementById('message');
             
-            console.log(JSON.parse(serverMessage.body).content+"   entro que es estyo");
+            console.log(JSON.parse(serverMessage.body).content);
             labelModify.value=(JSON.parse(serverMessage.body).content);
         }
        
         });
         stompClient.subscribe('/topic/users',function(users){
-            console.log("numro de usuario    "+ JSON.parse(users.body).length);
+        
           showUsersConnected(JSON.parse(users.body));
         });
         
@@ -56,15 +52,14 @@ function connect() {
    
 }
 function showUsersConnected(ListUsers){
-  
-   
+
     var usersNow= "";
-    var users= document.getElementById("usersActual");
+    var users= document.getElementById("users");
     for (i=0; i<ListUsers.length; i++){
         usersNow=usersNow+"  | "+ ListUsers[i].name;
     }
     
-    users.innerHTML=usersNow;
+    users.innerHTML =usersNow;
 }   
     
 function disconnect() {
@@ -128,7 +123,7 @@ function showServerMessage(message) {
     var labelModify = document.getElementById('message');
     devPos();
     labelModify.value=(message);
-    alert("RETRYTRUHRGEFAAGD  "+UpdateMath(message));
+   
     UpdateMath(message);
 
  
