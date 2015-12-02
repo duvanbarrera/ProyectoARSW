@@ -89,7 +89,7 @@ function devPos(){
         input.selectionStart = stored_range.text.length - str.text.length; 
         input.selectionEnd = input.selectionStart + str.text.length; 
         setCaretPosition(input,input.selectionStart);
-        
+      
     }else if(typeof input.selectionStart != 'undefined'){ 
         //alert(input.selectionStart); 
     } 
@@ -128,7 +128,9 @@ function showServerMessage(message) {
     var labelModify = document.getElementById('message');
     devPos();
     labelModify.value=(message);
+    alert("RETRYTRUHRGEFAAGD  "+UpdateMath(message));
     UpdateMath(message);
+
  
 }
 

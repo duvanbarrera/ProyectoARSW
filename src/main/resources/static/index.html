@@ -12,7 +12,9 @@ and open the template in the editor.
         <script src="sockjs-0.3.4.js"></script>
         <script src="stomp.js"></script>
         <script src="stomp-ws.js"></script>
+     
         <script type="text/x-mathjax-config">
+
           MathJax.Hub.Config({
             tex2jax: {
               inlineMath: [["$","$"],["\\(","\\)"]]
@@ -24,6 +26,7 @@ and open the template in the editor.
         </script>
         <script src="math.js"></script>
         <script src="utilities.js"></script>
+        <script src="jspdf.min.js"></script>
         <link rel="stylesheet" href="css/bootstrap.css">
         <!--<link rel="stylesheet" type="text/css" href="style.css">-->
     </head>
@@ -31,16 +34,16 @@ and open the template in the editor.
        <!-- <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websoc
                 Javascript and reload this page!</h2></noscript>-->
         <div>
-            <img  id="imagenPrincipal" src="images/FondoSuperior.png" >
+			<img  id="imagenPrincipal" src="images/FondoSuperior.png" >
         <div>
 		
             User:<input type="text" id="user" /><br>
             <button id="connect">Connect</button>
             <button id="disconnect" disabled="disabled">Disconnect</button><br>
-            
+            Users connected : <p id="users"></p>
         </div>
         <div id="conversationDiv">
-		Users connected : <p id="usersActual"></p>	
+			
             <table>
                 <tr>
                 <th><h2>Text</h2></th>
@@ -48,7 +51,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                 <td>
-                    <textarea type="text" id="message" oninput="sendMessage();UpdateMath(this.value)" rows="20" cols="60"></textarea>
+                    <textarea type="text" id="message" oninput="sendMessage();UpdateMath(this.value)" rows="20" cols="60"  ></textarea>
                 </td>
                 <td>
                    <div id ="prueba">
@@ -57,9 +60,19 @@ and open the template in the editor.
                 </td>
                 </tr>
             </table>
-              
+
+
+            
            
-                <button onclick="downloadLatex()">Download Latex</button>
+                <select id="fileSelected">
+                    <option value = "latex"> latex </option>
+                    <option value = "text">  text  </option>
+                    
+                </select>
+
+              <button  onclick = "download()" > Download </button>
+           
+            <!--<button id="send">Send</button>-->
           
         </div>
         </div>

@@ -1,12 +1,26 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+//Document utilities.js allow implement functions assistants
 
 
-function downloadLatex(){
-    var latex=document.getElementById("message").value;
-    alert(latex);
-    
+
+function download(){
+	alert("sd");
+	var doc = new jsPDF();
+	var x = document.getElementById("fileSelected");	
+	var selected = x.options[x.selectedIndex].value;
+	var download ;
+	if (selected=="latex") {
+		download = document.getElementById("prueba").value;
+			
+	}else if (selected=="text"){
+		download = document.getElementById("message").value;
+		
+	};
+
+	alert(selected +" ssdsf .l. "+download);
+	doc.setFontSize(30);
+	doc.text(20,20,download);
+	doc.save("");
+	
+
 }
